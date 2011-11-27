@@ -1,0 +1,71 @@
+{% extends "layouts/default.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+
+{% set error_class = 'error block' %}
+{% set info_class = 'info block' %}
+
+<div id="box">
+   <div class="block">
+      <h1>Login</h1>
+      <div class="content">
+<form action="{% url "user", {"action":"login"} %}" id="login-form" method="post" {% if loginform.errors %}class="error"{% endif %}>
+<table><tr><td style="vertical-align: top;">
+<ul>
+
+<li>
+    <label for="username">Email or Username</label>
+    <input name="username" id="username" value="{{ loginform.username }}" placeholder="Имя пользователя" class="text twothirds" />
+    {% if loginform.errors.username %}<br /><span class="{{ error_class }}">{{ loginform.errors.username }}</span>{% endif %}
+</li>
+<li>
+    <label for="password">Пароль</label>
+    <input name="password" id="password" value="{{ loginform.password }}" placeholder="Пароль" class="text twothirds" type="password"/>
+    {% if loginform.errors.password %}<br /><span class="{{ error_class }}">{{ loginform.errors.password }}</span>{% endif %}
+    <br /><small>{% html.anchor "user/forgot", "Forgot your password?" %}</small>
+</li>
+<li>
+    <label for="remember">Запомнить</label>
+    <input name="remember" id="remember" {% if loginform.remember %}checked="checked"{% endif %} style="margin-right: 10px" type="checkbox" />
+</li>
+</ul>
+    <button type="submit">Login</button>
+</form>
+</td><td width="5" style="border-right: 1px solid #DDD;">&nbsp;</td><td><td style="padding-left: 2px; vertical-align: top;">
+
+<ul>
+<li style="height: 61px">Don't have an account? {% html.anchor 'user/register', 'Register a new account' %}</li>
+
+{% if loginform.providers %}
+    <li style="padding-bottom: 8px;"><label>To register / log in using another account, please click your provider:</label></li>
+    <li>
+
+    {% if loginform.providers.facebook %}
+        <a class="login_provider" style="background: #FFF url(/img/facebook.png) no-repeat center center" href="{% url "user/provider", {"provider": "facebook"} %}"></a>
+    {% endif %}
+    {% if loginform.providers.twitter %}
+        <a class="login_provider" style="background: #FFF url(/img/twitter.png) no-repeat center center" href="{% url "user/provider", {"provider": "twitter"} %}"></a>
+    {% endif %}
+    {% if loginform.providers.google %}
+        <a class="login_provider" style="background: #FFF url(/img/google.gif) no-repeat center center" href="{% url "user/provider", {"provider": "google"} %}"></a>
+    {% endif %}
+    {% if loginform.providers.yahoo %}
+        <a class="login_provider" style="background: #FFF url(/img/yahoo.gif) no-repeat center center" href="{% url "user/provider", {"provider": "yahoo"} %}"></a>
+    {% endif %}
+    {% if loginform.providers.vkontakte %}
+        <a class="login_provider" style="background: #FFF url(/img/vkontakte.png) no-repeat center center" href="{% url "user/provider", {"provider": "vkontakte"} %}"></a>
+    {% endif %}
+
+   <br style="clear: both;">
+   </li>
+{% endif %}
+</ul>
+</td></tr></table>
+
+      </div>
+   </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layouts/default.twig" %}
+
+{% block title %}Complete registration{% endblock %}
+
+{% block body %}
+<div class="block">
+   <h1>Register</h1>
+   <div class="content">
+      <div class="info" style="width: 415px;"><small>Already have a user account? {% html.anchor 'user/login', 'Log in here.' %}</small></div>
+      <br>
+      <p>Fill in the information below to register.</p>
+
+<form action="{% url "user/provider_complete" %}" id="register-form" method="post" {% if errors %}class="error"{% endif %}>
+
+<ul>
+    {% if errors.messages %}
+        {% for error in errors.messages %}
+        <li class="error-message">{{ error }}</li>
+        {% endfor %}
+    {% endif %}
+        
+    {% form.hidden "provider", provider %}
+    {% form.hidden "identity", identity %}
+        
+   <li><label>Username</label>
+   {% form.input "username", userdata.username, {"id": "username", "class": "text twothirds", "placeholder": "Имя пользователя"} %}
+   {% if errors.username %}<br /><span class="{{ error_class }}">{{ errors.username }}</span>{% endif %}
+   </li>
+   
+   <li><label>Email address</label>
+   {% form.input "email", userdata.email, {"id": "email", "class": "text twothirds", "placeholder": "Email адрес"} %}
+   {% if errors.email %}<br /><span class="{{ error_class }}">{{ userdata.errors.email }}</span>{% endif %}
+   </li>
+   
+   <li><button type="submit">Complete registration</button></li>
+   
+</ul>
+<br style="clear:both;">
+</form>
+   </div>
+</div>
+{% endblock %}

@@ -7,12 +7,7 @@
  * @package default
  * @version 1.0
  */
-class Useradmin_Controller_App extends Controller {
-
-	/**
-	 * @var string Filename of the template file.
-	 */
-	public $template = 'template/default';
+class Useradmin_Controller_App extends Controller_Twig {
 
 	/**
 	 * @var boolean Whether the template file should be rendered automatically.
@@ -121,22 +116,14 @@ class Useradmin_Controller_App extends Controller {
 		}
 		if ($this->auto_render)
 		{
-			// only load the template if the template has not been set..
-			$this->template = View::factory($this->template);
-			// Initialize empty values
-			// Page title
-			$this->template->title = '';
-			// Page content
-			$this->template->content = '';
-			// Styles in header
-			$this->template->styles = array();
-			// Scripts in header
-			$this->template->scripts = array();
 			// ControllerName will contain the name of the Controller in the Template
 			$this->template->controllerName = $this->request->controller();
 			// ActionName will contain the name of the Action in the Template
 			$this->template->actionName = $this->request->action();
-				// next, it is expected that $this->template->content is set e.g. by rendering a view into it.
+            
+            $this->template->base_url = $this->base_url = URL::base();
+            // retrieve the current user and set the view variable accordingly
+            $this->template->user = $this->user = Auth::instance()->get_user();
 		}
 	}
 
@@ -156,12 +143,6 @@ class Useradmin_Controller_App extends Controller {
 			$scripts = array();
 			$this->template->styles = array_merge($this->template->styles, $styles);
 			$this->template->scripts = array_merge($this->template->scripts, $scripts);
-			
-			// Display profile if its enabled and request by query profile
-			$this->template->profile = (isset($_REQUEST['profile']) && Kohana::$profiling)?"<div id=\"kohana-profiler\">".View::factory('profiler/stats')."</div>":"";
-			
-			// Assign the template as the request response and render it
-			$this->response->body($this->template);
 		}
 		parent::after();
 	}

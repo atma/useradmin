@@ -1,0 +1,50 @@
+{% extends "layouts/default.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<div class="block">
+   <h1>Register</h1>
+   <div class="content">
+      <div class="info" style="width: 415px;"><small>Already have a user account? {% html.anchor 'user/login', 'Log in here.' %}</small></div>
+      <br>
+      <p>Fill in the information below to register.</p>
+
+<form action="{% url "user", {"action":"register"} %}" id="register-form" method="post" {% if registerform.errors %}class="error"{% endif %}>
+
+<ul>
+    
+   <li><label>Username</label>
+   {% form.input "username", registerform.username, {"id": "username", "class": "text twothirds", "placeholder": "Имя пользователя"} %}
+   {% if registerform.errors.username %}<br /><span class="{{ error_class }}">{{ registerform.errors.username }}</span>{% endif %}
+   </li>
+   
+   <li><label>Email address</label>
+   {% form.input "email", registerform.email, {"id": "email", "class": "text twothirds", "placeholder": "Email адрес"} %}
+   {% if registerform.errors.email %}<br /><span class="{{ error_class }}">{{ registerform.errors.email }}</span>{% endif %}
+   </li>
+   
+   <li>
+   <label for="password">Пароль</label>
+    <input name="password" id="password" value="{{ registerform.password }}" placeholder="Пароль" class="text twothirds" type="password" />
+    {% if registerform.errors.password %}<br /><span class="{{ error_class }}">{{ registerform.errors.password }}</span>{% endif %}
+   </li>
+   
+   <li><label>Re-type Password</label>
+   <input name="password_confirm" id="password_confirm" value="{{ registerform.password_confirm }}" placeholder="Подтвердите пароль" class="text twothirds" type="password" />
+    {% if registerform.errors.password_confirm %}<br /><span class="{{ error_class }}">{{ registerform.errors.password_confirm }}</span>{% endif %}
+   </li>
+   
+   {% if captcha_enabled %}
+   <li>
+       {{ recaptcha_html }}
+   </li>
+   {% endif %}
+   <li><button type="submit">Register new account</button></li>
+   
+</ul>
+<br style="clear:both;">
+</form>
+   </div>
+</div>
+{% endblock %}

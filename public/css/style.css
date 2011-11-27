@@ -578,5 +578,10 @@ background: #FFF url(/img/small/yahoo_gray.png) no-repeat center center;
 a.yahoo:hover {
 background: #FFF url(/img/small/yahoo.png) no-repeat center center;
 }
-
+a.vkontakte {
+   background: #FFF url(/img/small/vkontakte_gray.png) no-repeat center center;   
+}
+a.vkontakte:hover {
+   background: #FFF url(/img/small/vkontakte.png) no-repeat center center;
+}
 

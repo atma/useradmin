@@ -1,6 +1,10 @@
+{% extends "layouts/default.twig" %}
 
+{% block title %}Login{% endblock %}
+
+{% block body %}
 <div class="block">
-   <h1><?php echo __('Register'); ?></h1>
+   <h1>Register</h1>
    <div class="content">
       <div class="info" style="width: 415px;"><small><?php echo __('Already have a user account?').' '.Html::anchor('user/login', __('Log in here.')); ?></small></div>
       <br>
@@ -44,3 +48,4 @@ echo $form->close();
 ?>
    </div>
 </div>
+{% endblock %}

@@ -26,6 +26,8 @@ abstract class Useradmin_Provider {
 				break;
 				case 'yahoo':
 					$provider = new Provider_OpenID('yahoo');
+                case 'vkontakte':
+					$provider = new Provider_Vkontakte();
 				break;
 			}
 		}

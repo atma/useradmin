@@ -67,18 +67,7 @@ class Useradmin_Model_User extends Model_Auth_User {
 	 */
 	function generate_password($length = 8) 
 	{
-		// start with a blank password
-		$password = "";
-		// define possible characters (does not include l, number relatively likely)
-		$possible = "123456789abcdefghjkmnpqrstuvwxyz123456789";
-		// add random characters to $password until $length is reached
-		for ($i = 0; $i < $length; $i++) 
-		{
-			// pick a random character from the possible ones
-			$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
-			$password .= $char;
-		}
-		return $password;
+		return Text::random('alnum', $length);
 	}
 
 	/**

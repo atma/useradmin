@@ -1,0 +1,41 @@
+{% extends "layouts/default.twig" %}
+
+{% block title %}User profile{% endblock %}
+
+{% block body %}
+
+<div class="block">
+   <div class="submenu">
+      <ul>
+         <li>{% html.anchor 'user/profile_edit', 'Edit profile' %}</li>
+         <li>{% html.anchor 'user/unregister', 'Delete account' %}</li>
+      </ul>
+      <br style="clear:both;">
+   </div>
+   <h1>User profile</h1>
+   <div class="content">
+      <p class="intro">This is your user information, {{ user.username }}.</p>
+
+      <h2>Username &amp; Email Address</h2>
+      <p>{{ user.username }} &mdash; {{ user.email }}</p>
+
+      <h2>Login Activity</h2>
+      <p>Last login was {{ user.last_login|date('F jS, Y') }}, at {{ user.last_login|date('h:i:s a') }}.<br/>Total logins: {{ user.logins }}</p>
+
+      {% if identities.count() > 0 %}
+         <h2>Accounts associated with your user profile</h2><p>
+         {% for identity in identities %}
+            <a class="associated_account" style="background: #FFF url(/img/small/{{ identity.provider }}.png) no-repeat center center"></a>
+         {% endfor %}
+         <br style="clear: both;"></p>
+      {% endif %}
+      {% if providers %}
+         <h2>Additional account providers</h2><p>Click the provider icon to associate it with your existing account.</p><p>
+         {% for provider, enabled in providers %}
+            <a class="associated_account {{ provider}}" href="/user/associate/{{ provider }}"></a>
+         {% endfor %}
+        <br style="clear: both;"></p>
+      {% endif %}
+   </div>
+</div>
+{% endblock %}

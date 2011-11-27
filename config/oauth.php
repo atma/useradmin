@@ -13,4 +13,12 @@ return array(
 		'key' => 'your consumer key',
 		'secret' => 'your consumer secret'
 	),
+    
+    /**
+	 * VK applications can be registered at http://vkontakte.ru/apps.
+	 */
+	'vkontakte' => array(
+		'key' => 'your app id',
+		'secret' => 'your consumer secret'
+	),
 );

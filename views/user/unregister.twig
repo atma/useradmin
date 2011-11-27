@@ -1,0 +1,26 @@
+{% extends "layouts/default.twig" %}
+
+{% block title %}Close user account{% endblock %}
+
+{% block body %}
+
+<div class="block">
+   <h1>Confirm removing your ({{ data.username }}) user account</h1>
+   <div class="content">
+    <form action="{% url "user", {"action": "unregister"} %}" id="unregister-form" method="post" style="display: inline">
+        {% form.hidden "id", id %}
+
+        <p>Are you sure you want to remove your user account?</p>
+
+        <p>{% form.radio "confirmation", "Y" %} Yes<br/>
+        {% form.radio "confirmation", "N" %} No<br/></p>
+
+       <button type="submit">Confirm</button>
+    </form>
+
+   <form action="{% url "user", {"action": "profile"} %}" method="post" style="display: inline; padding-left: 10px">
+    <button type="submit">Cancel</button>
+    </form>
+   </div>
+</div>
+{% endblock %}
