@@ -10,7 +10,7 @@
       <br>
       <p>Fill in the information below to register.</p>
 
-<form action="{% url "user/provider_complete" %}" id="register-form" method="post" {% if errors %}class="error"{% endif %}>
+<form action="{% url "auth/provider_complete" %}" id="register-form" method="post" {% if errors %}class="error"{% endif %}>
 
 <ul>
     {% if errors.messages %}

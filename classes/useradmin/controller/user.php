@@ -570,7 +570,7 @@ class Useradmin_Controller_User extends Controller_App {
 		if (is_object($provider))
 		{
 			$this->request->redirect(
-			$provider->redirect_url('/user/provider_return/' . $provider_name));
+			$provider->redirect_url('/auth/provider_return/' . $provider_name));
 		}
 		//Message::add('error', 'Provider is not enabled; please select another provider or log in normally.');
 		$this->request->redirect('user/login');
@@ -766,7 +766,7 @@ class Useradmin_Controller_User extends Controller_App {
 					}
 					// in case the data for some reason fails, the user will still see something sensible:
 					// the normal registration form.
-					$this->template->set_filename('user/complete_registration');
+					$this->template->set_filename('rauth/complete_registration');
                     
 					// Move external errors to main array, for post helper compatibility
 					$errors = array_merge($errors, ( isset($errors['_external']) ? $errors['_external'] : array() ));
@@ -867,7 +867,7 @@ class Useradmin_Controller_User extends Controller_App {
                 $errors = $e->errors('register');
 
                 // complete registration form.
-                $this->template->set_filename('user/complete_registration');
+                $this->template->set_filename('rauth/complete_registration');
 
                 // Move external errors to main array, for post helper compatibility
                 $errors = array_merge($errors, ( isset($errors['_external']) ? $errors['_external'] : array() ));

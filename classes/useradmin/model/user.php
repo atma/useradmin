@@ -40,6 +40,7 @@ class Useradmin_Model_User extends Model_Auth_User {
 		$parent = parent::rules();
 		// fixes the min_length username value
 		$parent['username'][1] = array('min_length', array(':value', 1));
+        //$parent['name'] = array(array('not_empty'));
 		return $parent;
 	}
 	

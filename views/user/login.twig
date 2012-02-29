@@ -43,19 +43,19 @@
     <li>
 
     {% if loginform.providers.facebook %}
-        <a class="login_provider" style="background: #FFF url(/img/facebook.png) no-repeat center center" href="{% url "user/provider", {"provider": "facebook"} %}"></a>
+        <a class="login_provider" style="background: #FFF url(/img/facebook.png) no-repeat center center" href="{% url "auth/provider", {"provider": "facebook"} %}"></a>
     {% endif %}
     {% if loginform.providers.twitter %}
-        <a class="login_provider" style="background: #FFF url(/img/twitter.png) no-repeat center center" href="{% url "user/provider", {"provider": "twitter"} %}"></a>
+        <a class="login_provider" style="background: #FFF url(/img/twitter.png) no-repeat center center" href="{% url "auth/provider", {"provider": "twitter"} %}"></a>
     {% endif %}
     {% if loginform.providers.google %}
-        <a class="login_provider" style="background: #FFF url(/img/google.gif) no-repeat center center" href="{% url "user/provider", {"provider": "google"} %}"></a>
+        <a class="login_provider" style="background: #FFF url(/img/google.gif) no-repeat center center" href="{% url "auth/provider", {"provider": "google"} %}"></a>
     {% endif %}
     {% if loginform.providers.yahoo %}
-        <a class="login_provider" style="background: #FFF url(/img/yahoo.gif) no-repeat center center" href="{% url "user/provider", {"provider": "yahoo"} %}"></a>
+        <a class="login_provider" style="background: #FFF url(/img/yahoo.gif) no-repeat center center" href="{% url "auth/provider", {"provider": "yahoo"} %}"></a>
     {% endif %}
     {% if loginform.providers.vkontakte %}
-        <a class="login_provider" style="background: #FFF url(/img/vkontakte.png) no-repeat center center" href="{% url "user/provider", {"provider": "vkontakte"} %}"></a>
+        <a class="login_provider" style="background: #FFF url(/img/vkontakte.png) no-repeat center center" href="{% url "auth/provider", {"provider": "vkontakte"} %}"></a>
     {% endif %}
 
    <br style="clear: both;">

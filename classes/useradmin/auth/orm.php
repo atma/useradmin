@@ -85,6 +85,7 @@ class Useradmin_Auth_ORM extends Kohana_Auth_ORM implements Useradmin_Driver_iAu
 		try 
 		{
 			$user->create_user($fields, array(
+                'name',
 				'username',
 				'password',
 				'email',
