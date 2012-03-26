@@ -41,6 +41,10 @@ return array(
         * - You must enable the Kohana Core oauth module
         */
        'twitter' => true,
+        /**
+         * Toggle Yandex support: if set, users can log in using Yandex
+         */
+        'yandex' => true,
        /**
         * Toggle Google support: if set, users can log in using their Google account.
         *
