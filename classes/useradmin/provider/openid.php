@@ -7,7 +7,8 @@ class Useradmin_Provider_OpenID extends Provider {
 
 	protected static $config = array(
 		'google' => array('url' => 'https://www.google.com/accounts/o8/id'), 
-		'yahoo' => array('url' => 'https://me.yahoo.com/')
+		'yahoo' => array('url' => 'https://me.yahoo.com/'),
+        'yandex' => array('url' => 'http://www.yandex.ru/')
 	);
 
 	private $provider = null;
@@ -34,7 +35,8 @@ class Useradmin_Provider_OpenID extends Provider {
 		$this->provider->identity  = Provider_OpenID::$config[$this->provider_name]['url'];
 		$this->provider->returnUrl = URL::site($return_url, true);
 		$this->provider->required  = array(
-			'namePerson', 
+			'namePerson',
+            'namePerson/friendly',
 			'namePerson/first', 
 			'namePerson/last', 
 			'contact/email'
@@ -90,6 +92,11 @@ class Useradmin_Provider_OpenID extends Provider {
 		{
 			return $this->data['namePerson'];
 		}
+        // Yandex supports this AX
+        if (isset($this->data['namePerson/friendly']))
+        {
+            return $this->data['namePerson/friendly'];
+        }
 		// GOOGLE uses these...
 		if (isset($this->data['namePerson/first']) && isset($this->data['namePerson/last']))
 		{

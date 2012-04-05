@@ -24,6 +24,9 @@ abstract class Useradmin_Provider {
                 case 'yandex':
                     $provider = new Provider_Yandex();
                     break;
+                case 'yandexoid':
+                    $provider = new Provider_OpenID('yandex');
+                    break;
 				case 'google':
 					$provider = new Provider_OpenID('google');
 				break;
