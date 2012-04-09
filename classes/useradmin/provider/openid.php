@@ -87,16 +87,16 @@ class Useradmin_Provider_OpenID extends Provider {
 	 */
 	public function name()
 	{
-		// YAHOO supports this ax
-		if (isset($this->data['namePerson']))
-		{
-			return $this->data['namePerson'];
-		}
         // Yandex supports this AX
-        if (isset($this->data['namePerson/friendly']))
+        if (isset($this->data['namePerson/friendly']) AND !empty($this->data['namePerson/friendly']))
         {
             return $this->data['namePerson/friendly'];
         }
+		// YAHOO supports this ax
+		if (isset($this->data['namePerson']) AND !empty($this->data['namePerson']))
+		{
+			return $this->data['namePerson'];
+		}
 		// GOOGLE uses these...
 		if (isset($this->data['namePerson/first']) && isset($this->data['namePerson/last']))
 		{
